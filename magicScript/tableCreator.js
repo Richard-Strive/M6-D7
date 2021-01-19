@@ -12,7 +12,7 @@ const { promisify } = require("util");
 
 const read = promisify(fs.readFile);
 
-const creatrTable = async () => {
+const createTable = async () => {
   try {
     const dataPath = path.join(__dirname, "../sqlSchemas/schemas.sql");
     const data = await read(dataPath);
@@ -28,3 +28,5 @@ const creatrTable = async () => {
   }
   dp.pool.end();
 };
+
+createTable();

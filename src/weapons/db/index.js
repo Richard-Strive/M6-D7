@@ -11,9 +11,9 @@ module.exports = {
   // il modo per poter fare le query/le ricerche su postgress. Grazie a pool.
 
   async query(text, params) {
-    const start = Data.new();
+    const start = Date.now();
     const res = await pool.query(text, params);
-    const duration = Data.now() - start;
+    const duration = Date.now() - start;
     console.info("Query executed in", duration, "ms");
 
     return res;

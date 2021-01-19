@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "node magicScript/tableCreator",
+    "setup": "node ./magicScript/tableCreator.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -r dotenv/config src/server"
   },
