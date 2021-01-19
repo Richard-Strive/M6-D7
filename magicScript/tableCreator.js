@@ -26,7 +26,7 @@ const createTable = async () => {
 
     console.log(error);
   }
-  dp.pool.end();
+  db.pool.end();
 };
 
 createTable();

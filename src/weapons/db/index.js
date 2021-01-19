@@ -18,6 +18,5 @@ module.exports = {
 
     return res;
   },
-
   pool,
 };
