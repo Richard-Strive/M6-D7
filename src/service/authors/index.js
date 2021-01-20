@@ -3,7 +3,7 @@ const db = require("../../weapons/db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const { rows } = await db.query(`SELECT * FROM aricle`);
+    const { rows } = await db.query(`SELECT * FROM authors`);
     res.send(rows);
   } catch (error) {
     console.log(error);
@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const { rows } = await db.query(
-      `SELECT * FROM aricle WHERE id=${parseInt(req.params.id)}`
+      `SELECT * FROM authors WHERE id=${parseInt(req.params.id)}`
     );
     res.send(rows);
   } catch (error) {
@@ -24,8 +24,8 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const { id, headline, subhead, content, cover } = req.body;
-    const query = `INSERT INTO aricle (headline, subhead, content, cover) VALUES ('${headline}','${subhead}','${content}', '${cover}');`;
+    const { name, lastname, img } = req.body;
+    const query = `INSERT INTO authors (name, lastname, img) VALUES ('${name}','${lastname}','${img}');`;
     const result = await db.query(query);
     res.send(result);
   } catch (error) {
@@ -36,8 +36,8 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const { id, headline, subhead, content, cover } = req.body;
-    const query = `UPDATE aricle SET headline='${headline}', subhead='${subhead}', content='${content}', cover='${cover}' WHERE id=${parseInt(
+    const { name, lastname, img } = req.body;
+    const query = `UPDATE authors SET name='${name}', lastname='${lastname}', img='${img}' WHERE id=${parseInt(
       req.params.id
     )};`;
     const result = await db.query(query);
@@ -51,7 +51,7 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const { rows } = await db.query(
-      `DELETE FROM aricle WHERE id=${parseInt(req.params.id)}`
+      `DELETE FROM authors WHERE id=${parseInt(req.params.id)}`
     );
     res.send(rows);
   } catch (error) {
