@@ -10,6 +10,29 @@ router.get("/", async (req, res, next) => {
     res.status(500).send(error);
   }
 });
+router.get("/test", async (req, res, next) => {
+  try {
+    const {
+      rows,
+    } = await db.query(`SELECT * FROM public.authors INNER JOIN public.aricle ON authors_id=authors.id
+    INNER JOIN public.category ON aricle_id=aricle.id`);
+    res.send(rows);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
+router.get("/test/:id2", async (req, res, next) => {
+  try {
+    const { rows } = await db.query(
+      `SELECT * FROM aricle WHERE content LIKE '%${req.params.id2}%'`
+    );
+    res.send(rows);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
 router.get("/:id", async (req, res, next) => {
   try {
     const { rows } = await db.query(
@@ -24,8 +47,8 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const { id, headline, subhead, content, cover } = req.body;
-    const query = `INSERT INTO aricle (headline, subhead, content, cover) VALUES ('${headline}','${subhead}','${content}', '${cover}');`;
+    const { id, headline, subhead, content, cover, authors_id } = req.body;
+    const query = `INSERT INTO aricle (headline, subhead, content, cover, authors_id) VALUES ('${headline}','${subhead}','${content}', '${cover}', '${authors_id}');`;
     const result = await db.query(query);
     res.send(result);
   } catch (error) {
