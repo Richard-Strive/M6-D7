@@ -60,4 +60,8 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+/*
+To much stuff to do
+*/
+
 module.exports = router;
