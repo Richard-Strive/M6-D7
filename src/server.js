@@ -3,8 +3,8 @@ const cors = require("cors");
 const service = require("./service");
 const server = express();
 
-server.use(cors());
 server.use(express.json());
+server.use(cors());
 
 // In questo modo diamo ad ogni elemento di route presente su service una base localhost:port/api/nomedelroute//
 // service.use("/api", service);
